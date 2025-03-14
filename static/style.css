@@ -1,0 +1,166 @@
+/* Estilização geral */
+body {
+    background-color: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Estilização do título principal */
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Container do seletor de data */
+.date-picker-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Input do DateRangePicker */
+.date-picker-input {
+    background-color: #1e1e1e;
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    border: 2px solid #ffcc00;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    width: 260px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+.date-picker-input:hover {
+    background-color: #ffcc00;
+    color: black;
+}
+
+/* Estilização das seções */
+.section {
+    margin-top: 40px;
+    padding: 20px;
+    border-radius: 10px;
+    background: #1a1a1a;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+}
+
+/* Título das seções */
+.section h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: #ffcc00;
+    text-transform: uppercase;
+}
+
+/* Layout do painel de métricas */
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+}
+
+/* Cartões de métricas */
+.metric {
+    background: #1e1e1e;
+    padding: 15px;
+    border-radius: 8px;
+    width: 200px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease-in-out;
+    text-align: center;
+}
+
+.metric:hover {
+    transform: scale(1.05);
+}
+
+.metric h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #ffcc00;
+    text-transform: uppercase;
+}
+
+.metric p {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Estilização do DateRangePicker */
+.daterangepicker {
+    background-color: #222 !important;
+    border: 1px solid #ffcc00 !important;
+    color: white !important;
+}
+
+/* Estilo do header do DateRangePicker */
+.daterangepicker .calendar-table {
+    background-color: #222 !important;
+    color: white !important;
+}
+
+/* Ajustando o estilo dos botões */
+.daterangepicker .drp-buttons {
+    background-color: #222 !important;
+    border-top: 1px solid #ffcc00 !important;
+}
+
+.daterangepicker .drp-buttons .btn {
+    background-color: #444 !important;
+    color: white !important;
+    border: none !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.daterangepicker .drp-buttons .btn:hover {
+    background-color: #ffcc00 !important;
+    color: black !important;
+}
+
+/* Dias fora do mês (cinza escuro) */
+.daterangepicker td.off {
+    background-color: #1a1a1a !important;
+    color: #777 !important;
+}
+
+/* Primeiro e último dia do intervalo (amarelo forte) */
+.daterangepicker td.active.start-date, 
+.daterangepicker td.active.end-date {
+    background-color: #ffcc00 !important;
+    color: black !important;
+    font-weight: bold;
+    border-radius: 50%;
+}
+
+/* Dias intermediários da seleção (amarelo mais fraco) */
+.daterangepicker td.in-range {
+    background-color: #ffdd66 !important;
+    color: black !important;
+}
+
+/* Ajuste nos dias disponíveis para hover */
+.daterangepicker td.available:hover {
+    background-color: #444 !important;
+    color: white !important;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+    .dashboard {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .date-picker-input {
+        width: 90%;
+    }
+}
