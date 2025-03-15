@@ -1,182 +1,180 @@
-/* Estilização geral */
-body {
-    background-color: #121212;
-    color: white;
+:root {
+    --cor-fundo: #121212;
+    --cor-primaria: #ffcc00;
+    --cor-secundaria: #1e1e1e;
+    --cor-destaque: #1a1a1a;
+    --cor-texto: #ffffff;
+    --cor-texto-secundario: #000000;
+  }
+  
+  /* Estilização geral */
+  body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
     font-family: Arial, sans-serif;
-    text-align: center;
     margin: 0;
     padding: 20px;
-}
-
-/* Estilização do título principal */
-h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-/* Container do seletor de data */
-.date-picker-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-/* Input do DateRangePicker */
-.date-picker-input {
-    background-color: #1e1e1e;
-    color: white;
-    font-size: 16px;
-    padding: 10px 15px;
-    border: 2px solid #ffcc00;
-    border-radius: 8px;
-    cursor: pointer;
-    text-align: center;
-    width: 260px;
-    font-weight: bold;
-    transition: all 0.3s ease-in-out;
-}
-
-.date-picker-input:hover {
-    background-color: #ffcc00;
-    color: black;
-}
-
-/* Estilização das seções */
-.section {
-    margin-top: 40px;
-    padding: 20px;
-    border-radius: 10px;
-    background: #1a1a1a;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-}
-
-/* Título das seções */
-.section h2 {
-    font-size: 22px;
-    margin-bottom: 15px;
-    color: #ffcc00;
-    text-transform: uppercase;
-}
-
-/* Layout do painel de métricas */
-.dashboard {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 10px;
-}
-
-/* Cartões de métricas */
-.metric {
-    background: #1e1e1e;
-    padding: 15px;
-    border-radius: 8px;
-    width: 200px;
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
-    transition: transform 0.2s ease-in-out;
-    text-align: center;
-}
-
-.metric:hover {
-    transform: scale(1.05);
-}
-
-.metric h3 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    color: #ffcc00;
-    text-transform: uppercase;
-}
-
-.metric p {
-    font-size: 22px;
-    font-weight: bold;
-}
-
-/* Estilização do DateRangePicker */
-.daterangepicker {
-    background-color: #222 !important;
-    border: 1px solid #ffcc00 !important;
-    color: white !important;
-}
-
-/* Estilo do header do DateRangePicker */
-.daterangepicker .calendar-table {
-    background-color: #222 !important;
-    color: white !important;
-}
-
-/* Ajustando o estilo dos botões */
-.daterangepicker .drp-buttons {
-    background-color: #222 !important;
-    border-top: 1px solid #ffcc00 !important;
-}
-
-.daterangepicker .drp-buttons .btn {
-    background-color: #444 !important;
-    color: white !important;
-    border: none !important;
-    transition: all 0.3s ease-in-out;
-}
-
-.daterangepicker .drp-buttons .btn:hover {
-    background-color: #ffcc00 !important;
-    color: black !important;
-}
-
-/* Dias fora do mês (cinza escuro) */
-.daterangepicker td.off {
-    background-color: #1a1a1a !important;
-    color: #777 !important;
-}
-
-/* Primeiro e último dia do intervalo (amarelo forte) */
-.daterangepicker td.active.start-date, 
-.daterangepicker td.active.end-date {
-    background-color: #ffcc00 !important;
-    color: black !important;
-    font-weight: bold;
-    border-radius: 50%;
-}
-
-/* Dias intermediários da seleção (amarelo mais fraco) */
-.daterangepicker td.in-range {
-    background-color: #ffdd66 !important;
-    color: black !important;
-}
-
-/* Ajuste nos dias disponíveis para hover */
-.daterangepicker td.available:hover {
-    background-color: #444 !important;
-    color: white !important;
-}
-
-/* Responsividade para telas menores */
-@media (max-width: 600px) {
-    .dashboard {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .date-picker-input {
-        width: 90%;
-    }
-}
-
-#spinner {
+    flex-direction: column;
+    align-items: center; /* Centraliza horizontalmente */
+  }
+  
+  /* Spinner de carregamento (centralizado perfeitamente) */
+  #spinner {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    color: #FFF;
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: var(--cor-texto);
     justify-content: center;
     align-items: center;
     z-index: 9999;
   }
   
+  /* Centraliza o título principal */
+  h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    text-align: center; /* garante alinhamento centralizado do texto */
+  }
+  
+  /* Container do seletor de data */
+  .date-picker-container {
+    display: flex;
+    justify-content: center; /* centraliza horizontalmente */
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Input do DateRangePicker */
+  .date-picker-input {
+    background-color: var(--cor-secundaria);
+    color: var(--cor-texto);
+    font-size: 16px;
+    padding: 10px 15px;
+    border: 2px solid var(--cor-primaria);
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    width: 260px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .date-picker-input:hover {
+    background-color: var(--cor-primaria);
+    color: var(--cor-texto-secundario);
+  }
+  
+  /* Seções centralizadas */
+  .section {
+    width: 100%;
+    max-width: 1200px;
+    margin: 20px auto; /* centraliza horizontalmente com margem automática */
+    padding: 20px;
+    border-radius: 10px;
+    background: var(--cor-destaque);
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Títulos das seções */
+  .section h2 {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: var(--cor-primaria);
+    text-transform: uppercase;
+    text-align: center; /* garante que títulos das seções fiquem centralizados */
+  }
+  
+  /* Dashboard centralizado e organizado */
+  .dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* centraliza todos os cartões */
+    align-items: flex-start;
+    gap: 20px;
+    padding: 10px;
+  }
+  
+  /* Cartões de métricas centralizados */
+  .metric {
+    background: var(--cor-secundaria);
+    padding: 15px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 200px;
+    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+    transition: transform 0.2s ease-in-out;
+    text-align: center;
+  }
+  
+  .metric:hover {
+    transform: scale(1.05);
+  }
+  
+  .metric h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: var(--cor-primaria);
+    text-transform: uppercase;
+  }
+  
+  .metric p {
+    font-size: 22px;
+    font-weight: bold;
+  }
+  
+  /* Responsividade aprimorada para telas menores */
+  @media (max-width: 600px) {
+    .dashboard {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .date-picker-input {
+      width: 90%;
+    }
+  
+    .metric {
+      max-width: 100%; /* ajusta largura total em telas pequenas */
+    }
+  }
+  
+  /* Personalização adicional do DateRangePicker (se precisar) */
+  .daterangepicker {
+    background-color: #222 !important;
+    border: 1px solid var(--cor-primaria) !important;
+    color: white !important;
+  }
+  .daterangepicker .calendar-table {
+    background-color: #222 !important;
+    color: white !important;
+}
+.daterangepicker td.off, 
+.daterangepicker td.available {
+    background-color: #222 !important; /* Cor escura */
+    color: #ccc !important; /* Cor clara para contraste */
+}
+
+.daterangepicker td.in-range {
+    background-color: #444 !important; /* Cor escura intermediária para dias selecionados */
+    color: #fff !important; /* texto branco */
+}
+
+.daterangepicker td.active, 
+.daterangepicker td.active:hover {
+    background-color: #ffcc00 !important; /* Cor destaque escolhida */
+    color: #000 !important; /* texto preto */
+}
+.daterangepicker .ranges li:hover {
+    background-color: #ffcc00 !important;
+    color: #000 !important;
+}
+.daterangepicker .ranges li.active {
+    background-color: #ffcc00 !important;
+    color: black !important;
+}
