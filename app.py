@@ -3,7 +3,8 @@ import requests
 import time
 import os
 from flask import Flask, jsonify, render_template, request
-from datetime import datetime, timedelta
+from datetime import datetime
+from zoneinfo import ZoneInfo
 from facebook_business.api import FacebookAdsApi
 from facebook_business.adobjects.adaccount import AdAccount
 from dotenv import load_dotenv
@@ -27,7 +28,7 @@ AD_ACCOUNT_ID = os.getenv("AD_ACCOUNT_ID")
 FacebookAdsApi.init(access_token=ACCESS_TOKEN)
 
 def calcular_periodo(period):
-    hoje = datetime.today()
+    hoje = datetime.now(ZoneInfo("UTC"))
     period_mapping = {
         "today": (hoje, hoje),
         "yesterday": (hoje - timedelta(days=1), hoje - timedelta(days=1)),
