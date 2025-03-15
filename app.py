@@ -13,7 +13,6 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s',
     datefmt='%Y-%m-%d %H:%M:%S'
 )
-logging.info("Aplicação iniciada com logging configurado.")
 
 def create_app():
     app = Flask(__name__, static_folder='static')
