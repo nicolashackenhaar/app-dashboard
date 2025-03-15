@@ -80,9 +80,13 @@ def get_pixel_pageviews(start_date, end_date):
 
         logging.info(f"✅ [INFO] Total de PageViews calculado: {total_pageviews}")
         return total_pageviews  
-    except Exception as e:
-        logging.error(f"❌ [ERRO] Erro ao buscar PageViews: {e}")
-        return 0
+    
+    except requests.exceptions.RequestException as e:
+      logging.error("Erro de requisição: %s", e)
+      return 0
+    except ValueError as e:
+       logging.error("Erro ao converter JSON: %s", e)
+       return 0
 
 
 def get_ads_data(start_date, end_date):
