@@ -3,7 +3,7 @@ import requests
 import time
 import os
 from flask import Flask, jsonify, render_template, request
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 from facebook_business.api import FacebookAdsApi
 from facebook_business.adobjects.adaccount import AdAccount
