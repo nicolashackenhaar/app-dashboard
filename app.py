@@ -8,6 +8,7 @@ from facebook_business.api import FacebookAdsApi
 from facebook_business.adobjects.adaccount import AdAccount
 from dotenv import load_dotenv
 
+
 logging.basicConfig(
     level=logging.DEBUG,  # Pode ajustar para INFO ou WARNING em produção
     format='%(asctime)s - %(levelname)s - %(message)s',
@@ -60,8 +61,12 @@ def get_pixel_pageviews(start_date, end_date):
         }
         
         response = requests.get(url, params=params)
-        data = response.json()
 
+        if response.status_code != 200:
+            logging.error("Erro ao acessar API do Pixel. Status: %s, Resposta: %s", response.status_code, response.text)
+            return 0
+
+        data = response.json()
         logging.debug("📊 [DEBUG] Resposta da API do Pixel: %s", data)  # Log para depuração
 
         total_pageviews = 0  # Variável para armazenar o total
@@ -182,3 +187,5 @@ def get_data():
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)
+
+
