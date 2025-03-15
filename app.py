@@ -1,9 +1,19 @@
+import logging
+import requests
+import time
 import os
 from flask import Flask, jsonify, render_template, request
 from datetime import datetime, timedelta
 from facebook_business.api import FacebookAdsApi
 from facebook_business.adobjects.adaccount import AdAccount
 from dotenv import load_dotenv
+
+logging.basicConfig(
+    level=logging.DEBUG,  # Pode ajustar para INFO ou WARNING em produção
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+logging.info("Teste: configuração do logging funcionando!")
 
 # Carrega variáveis de ambiente do arquivo .env
 load_dotenv()
@@ -28,15 +38,13 @@ def calcular_periodo(period):
         "max": (datetime(2022, 2, 12), hoje)
     }
     return period_mapping.get(period, (hoje - timedelta(days=7), hoje))
-import requests
-import os
-import time
+
 
 def get_pixel_pageviews(start_date, end_date):
     try:
         pixel_id = os.getenv("PIXEL_ID")  
         if not pixel_id:
-            print("⚠️ [ERRO] PIXEL_ID não foi encontrado no .env")
+            logging.error("⚠️ [ERRO] PIXEL_ID não foi encontrado no .env")
             return 0
 
         # 🔹 Converte as datas para formato UNIX timestamp
@@ -54,7 +62,7 @@ def get_pixel_pageviews(start_date, end_date):
         response = requests.get(url, params=params)
         data = response.json()
 
-        print("📊 [DEBUG] Resposta da API do Pixel:", data)  # Log para depuração
+        logging.debug("📊 [DEBUG] Resposta da API do Pixel: %s", data)  # Log para depuração
 
         total_pageviews = 0  # Variável para armazenar o total
 
@@ -65,16 +73,16 @@ def get_pixel_pageviews(start_date, end_date):
                         if event.get("value") == "PageView":
                             total_pageviews += int(event.get("count", 0))  # Somando corretamente
 
-        print(f"✅ [INFO] Total de PageViews calculado: {total_pageviews}")
+        logging.info(f"✅ [INFO] Total de PageViews calculado: {total_pageviews}")
         return total_pageviews  
     except Exception as e:
-        print(f"❌ [ERRO] Erro ao buscar PageViews: {e}")
+        logging.error(f"❌ [ERRO] Erro ao buscar PageViews: {e}")
         return 0
 
 
 def get_ads_data(start_date, end_date):
     try:
-        print(f"📅 [DEBUG] Buscando dados de anúncios de {start_date} até {end_date}")
+        logging.debug(f"📅 [DEBUG] Buscando dados de anúncios de {start_date} até {end_date}")
         
         account = AdAccount(AD_ACCOUNT_ID)
         fields = [
@@ -89,7 +97,7 @@ def get_ads_data(start_date, end_date):
         }
         ads_data = account.get_insights(fields=fields, params=params)
 
-        print("📊 [DEBUG] Resposta da API de Ads:", ads_data)
+        logging.debug("📊 [DEBUG] Resposta da API de Ads: %s", ads_data)
 
         if not ads_data:
             return {"error": "Nenhum dado retornado para este período."}
@@ -121,8 +129,8 @@ def get_ads_data(start_date, end_date):
         cpc = (total_spend / total_clicks) if total_clicks > 0 else 0
         ctr = (total_clicks / total_impressions) * 100 if total_impressions > 0 else 0
 
-        print(f"✅ [INFO] Total de ROAS calculado: {total_roas}")
-        print(f"✅ [INFO] Total de PageViews calculado: {total_pageviews}")
+        logging.info(f"✅ [INFO] Total de ROAS calculado: {total_roas}")
+        logging.info(f"✅ [INFO] Total de PageViews calculado: {total_pageviews}")
 
         return {
             "gasto": round(total_spend, 2),
@@ -163,11 +171,11 @@ def get_data():
     else:
         start_date, end_date = calcular_periodo(period)
 
-    print(f"📅 [DEBUG] Período: {period} | De: {start_date} Até: {end_date}")  # Log para verificar as datas
+    logging.debug(f"📅 [DEBUG] Período: {period} | De: {start_date} Até: {end_date}")  # Log para verificar as datas
 
     data = get_ads_data(start_date, end_date)
     
-    print(f"📊 [DEBUG] Dados retornados: {data}")  # Log para verificar o que está vindo da API
+    logging.debug(f"📊 [DEBUG] Dados retornados: {data}")  # Log para verificar o que está vindo da API
     
     return jsonify(data)
 
